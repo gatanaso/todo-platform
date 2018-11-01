@@ -1,0 +1,53 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/vaadin-button/vaadin-button.html">
+<link rel="import" href="../bower_components/vaadin-text-field/vaadin-text-field.html">
+
+<dom-module id="todo-app">
+  <template>
+    <style>
+      .task-input {
+        display: flex;
+        box-sizing: border-box;
+      }
+
+      .task-input,
+      .task-container {
+        width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .todo-input {
+        width: 100%;
+      }
+
+      .action {
+        margin-left: 1em;
+      }
+
+    </style>
+
+    <div class="task-input">
+      <vaadin-text-field id="taskInput" class="todo-input" placeholder="Add task..." on-keyup="keyUpListener"></vaadin-text-field>
+
+      <vaadin-button class="action" on-click="addTaskClicked">
+        <span>Add</span>
+      </vaadin-button>
+    </div>
+
+    <div id="taskContainer" class="task-container"></div>
+  </template>
+
+  <script>
+    {
+      class TodoApp extends Polymer.Element {
+
+        static get is() {
+          return 'todo-app';
+        }
+      }
+
+      window.customElements.define(TodoApp.is, TodoApp);
+    }
+  </script>
+</dom-module>

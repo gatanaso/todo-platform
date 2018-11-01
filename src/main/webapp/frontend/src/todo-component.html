@@ -1,0 +1,68 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/vaadin-button/vaadin-button.html">
+<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
+
+<dom-module id="todo-component">
+  <template>
+    <style>
+      :host {
+        display: flex;
+        align-items: center;
+        border-radius: 0.25em;
+        box-shadow: 0 0.25em 0.5em 0 rgba(0,0,0,0.2);
+        padding: 0.125em 1em;
+        margin-bottom: 0.625em;
+        justify-content: space-evenly;
+        height: 3em;
+      }
+
+      :host([done]) {
+        background-color: var(--lumo-contrast-5pct);
+        color: var(--lumo-contrast-50pct);
+      }
+
+      .task-title {
+        flex-grow: 1;
+      }
+
+      .task-action {
+        margin: 0 0.5em;
+      }
+    </style>
+
+
+    <span id="taskTitle" class="task-title">[[task]]</span>
+
+    <vaadin-button theme="icon" class="task-action" on-click="doneTaskClicked" disabled="[[done]]">
+      <iron-icon icon="vaadin:check" slot="prefix"></iron-icon>
+    </vaadin-button>
+
+    <vaadin-button theme="icon" class="task-action" on-click="deleteTaskClicked">
+      <iron-icon icon="vaadin:trash" slot="prefix"></iron-icon>
+    </vaadin-button>
+  </template>
+
+  <script>
+    {
+      class TodoComponent extends Polymer.Element {
+
+        static get is() {
+          return 'todo-component';
+        }
+
+        static get properties() {
+          return {
+            task: String,
+
+            done: {
+              type: Boolean,
+              reflectToAttribute: true
+            }
+          };
+        }
+      }
+
+      window.customElements.define(TodoComponent.is, TodoComponent);
+    }
+  </script>
+</dom-module>
